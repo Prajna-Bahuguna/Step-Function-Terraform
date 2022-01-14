@@ -3,5 +3,5 @@ variable "aws_region" {
 } 
 
 variable "aws_iam_role" {
-    default = "arn:aws:iam::023550738818:role/lambda-demo"
+    default = "arn:aws:iam::sample-role-name:role/step-func-demo" #Edit this with IAM Role ARN that has permission of services used with step function and IAM: PassRole
 }
