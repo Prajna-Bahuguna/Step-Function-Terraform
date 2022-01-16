@@ -12,7 +12,7 @@ resource "aws_sfn_state_machine" "simple-workflow" {
   "States": {
     "Hello": {
       "Type": "Task",
-      "Resource": "aws-servive-arn.arn", #Replace resource value with AWS Service ARN
+      "Resource": "aws-servive-arn.arn", 
       "Next": "Hi",
       "TimeoutSeconds": 120,
       "Catch" : [{
@@ -23,7 +23,7 @@ resource "aws_sfn_state_machine" "simple-workflow" {
     },
     "Hi": {
       "Type": "Task",
-      "Resource": "aws-servive-arn.arn", #Replace resource value with AWS Service ARN
+      "Resource": "aws-servive-arn.arn", 
       "Next": "World",
       "TimeoutSeconds": 120,
       "Catch" : [{
@@ -34,7 +34,7 @@ resource "aws_sfn_state_machine" "simple-workflow" {
     },
     "World": {
       "Type": "Task",
-      "Resource": "aws-servive-arn.arn", #Replace resource value with AWS Service ARN
+      "Resource": "aws-servive-arn.arn", 
       "Next": "Succeeded",
       "TimeoutSeconds": 120,
       "Catch" : [{
@@ -45,7 +45,7 @@ resource "aws_sfn_state_machine" "simple-workflow" {
     },
       "Exception" : {
       "Type": "Task",
-      "Resource": "aws-servive-arn.arn",  #Replace resource value with AWS Service ARN      
+      "Resource": "aws-servive-arn.arn",   
       "ResultPath": "$.error.exception_handled",
       "Next" : "Failed"
     },
