@@ -1,0 +1,52 @@
+{
+  "Comment": "A simple workflow example of the Amazon States Language using 3 Task states with exception handling",
+  "StartAt": "Hello",
+  "States": {
+    "Hello": {
+      "Type": "Task",
+      "Resource": "aws-servive-arn.arn", 
+      "Next": "Hi",
+      "TimeoutSeconds": 120,
+      "Catch" : [{
+        "ErrorEquals" : ["States.ALL"],
+        "ResultPath": "$.error",
+        "Next" : "Exception"
+      }]    
+    },
+    "Hi": {
+      "Type": "Task",
+      "Resource": "aws-servive-arn.arn", 
+      "Next": "World",
+      "TimeoutSeconds": 120,
+      "Catch" : [{
+        "ErrorEquals" : ["States.ALL"],
+        "ResultPath": "$.error",
+        "Next" : "Exception"
+      }]    
+    },
+    "World": {
+      "Type": "Task",
+      "Resource": "aws-servive-arn.arn", 
+      "Next": "Succeeded",
+      "TimeoutSeconds": 120,
+      "Catch" : [{
+        "ErrorEquals" : ["States.ALL"],
+        "ResultPath": "$.error",
+        "Next" : "Exception"    
+      }]
+    },
+      "Exception" : {
+      "Type": "Task",
+      "Resource": "aws-servive-arn.arn",   
+      "ResultPath": "$.error.exception_handled",
+      "Next" : "Failed"
+    },
+    "Succeeded" : {
+      "End" : true,
+      "Type" : "Pass"
+    },
+    "Failed": {
+      "Type": "Fail"
+    }  
+  }
+}
